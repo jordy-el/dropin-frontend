@@ -1,0 +1,21 @@
+#container {
+    min-height: 100vh;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+h1 {
+    font-family: 'Nixie One', cursive;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
