@@ -6,4 +6,4 @@
 * Axios.js for ajax
 * UIkit
 * jQuery
-* _No hosting information yet_
+* Hosted [here](http://dropin.bitballoon.com/).
