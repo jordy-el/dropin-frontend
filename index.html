@@ -17,40 +17,28 @@
                         </div>
                     </div>
                     <div class="uk-section uk-section-muted uk-flex-1" style="padding-top: 1rem; padding-bottom: 1rem;">
-                        <ul uk-accordion="collapsible: false">
-                            <li>
-                                <h3 class="uk-accordion-title uk-text-center" style="padding-left: 30px;">Drop a Pin</h3>
-                                <div class="uk-accordion-content">
-                                    <form class="uk-margin-small-left uk-margin-small-right">
-                                        <fieldset class="uk-fieldset">
-                                            
-                                            <div class="uk-margin">
-                                                <input id="latitude" class="uk-input" type="number" min="-90" max="90" placeholder="Latitude">
-                                            </div>
+                        <h3 class="uk-text-center">Drop a Pin</h3>
+                        <form class="uk-margin-small-left uk-margin-small-right">
+                            <fieldset class="uk-fieldset">
 
-                                            <div class="uk-margin">
-                                                <input id="longitude" class="uk-input" type="number" min="-180" max="180" placeholder="Longitude">
-                                            </div>
-
-                                            <div class="uk-margin">
-                                                <textarea id="message" class="uk-textarea" rows="3" placeholder="Write a message!"></textarea>
-                                            </div>
-
-                                            <div class="uk-margin">
-                                                <button id="submit" class="uk-button uk-button-primary uk-width-1-1">Drop Pin</button>
-                                            </div>
-
-                                        </fieldset>
-                                    </form>
+                                <div class="uk-margin">
+                                    <input id="latitude" class="uk-input" type="number" min="-90" max="90" placeholder="Latitude (Between -90 and 90)">
                                 </div>
-                            </li>
-                            <li>
-                                <h3 class="uk-accordion-title uk-text-center" style="padding-left: 30px;">All Pins</h3>
-                                <div class="uk-accordion-content">
-                                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit.</p>
+
+                                <div class="uk-margin">
+                                    <input id="longitude" class="uk-input" type="number" min="-180" max="180" placeholder="Longitude (Between -180 and 180)">
                                 </div>
-                            </li>
-                        </ul>
+
+                                <div class="uk-margin">
+                                    <textarea id="message" class="uk-textarea" rows="3" placeholder="Write a message!"></textarea>
+                                </div>
+
+                                <div class="uk-margin">
+                                    <button id="submit" class="uk-button uk-button-primary uk-width-1-1">Drop Pin</button>
+                                </div>
+
+                            </fieldset>
+                        </form>
                     </div>
                 </div>
                 <div id="map" class="full-height"></div>

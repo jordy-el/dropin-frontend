@@ -1,7 +1,9 @@
 'use strict';
 
+// Pin API
 const pinsUrl = 'https://radiant-plains-19783.herokuapp.com/pins';
 
+// Initialize google map
 function initMap() {
   const center = {
     lat: -25.344,
@@ -36,6 +38,7 @@ function main() {
   const $message = $('#message');
   const formInputs = [$latitude, $longitude, $message];
 
+  // Add add/remove invalid class on inputs
   function validateForm(valid) {
     formInputs.forEach((n) => {
       if (n.hasClass('uk-form-danger') && valid) { n.removeClass('uk-form-danger') }
@@ -51,12 +54,14 @@ function main() {
       latitude: $latitude[0].value,
       longitude: $longitude[0].value,
       message: $message[0].value
-    }).then(() => {
-      validateForm(true);
-      initMap();
-      formInputs.forEach((n) => { n.val('') });
-    }).catch((e) => {
-      validateForm(false);
+    })
+      .then(() => {
+        validateForm(true);
+        initMap();
+        formInputs.forEach((n) => { n.val('') });
+    })
+      .catch(() => {
+        validateForm(false);
     })
   }
 
@@ -65,6 +70,7 @@ function main() {
     if (formInputs.every((n) => { return n[0].value !== '' })) {
       submitForm();
     }
+    validateForm(false);
     return false;
   });
 
