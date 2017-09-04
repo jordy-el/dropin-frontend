@@ -27,6 +27,7 @@ function initMap() {
         });
       });
     }
+    $('#map-loader').fadeOut(400);
   }));
 }
 
@@ -68,9 +69,12 @@ function main() {
   // Handler for form submission
   $('#submit').click(() => {
     if (formInputs.every((n) => { return n[0].value !== '' })) {
+      $('#submit').next('p').text('');
       submitForm();
+    } else {
+      validateForm(false);
+      $('#submit').next('p').text('All fields must be filled.');
     }
-    validateForm(false);
     return false;
   });
 
