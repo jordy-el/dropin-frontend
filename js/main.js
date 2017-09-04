@@ -5,6 +5,7 @@ const pinsUrl = 'https://radiant-plains-19783.herokuapp.com/pins';
 
 // Initialize google map
 function initMap(customCenter = false) {
+
   const center = {
     lat: -25.344,
     lng: 131.036
@@ -12,7 +13,10 @@ function initMap(customCenter = false) {
 
   const map = new google.maps.Map(document.getElementById('map'), { zoom: 4, center: customCenter || center });
 
-  axios.get(pinsUrl).then((response => {
+  let placedMarker;
+
+  // Fetch and place all markers
+  axios.get(pinsUrl).then((response) => {
     if (response.data.length > 0) {
       response.data.forEach((p) => {
         const marker = new google.maps.Marker({
@@ -20,20 +24,42 @@ function initMap(customCenter = false) {
           map: map
         });
         const infowindow = new google.maps.InfoWindow({
-          content: `<h5>${p.message}</h5>`
+          content: `<p>${p.message}</p>`
         });
         marker.addListener('click', function() {
+          map.panTo({lat: this.position.lat(), lng: this.position.lng()});
           infowindow.open(map, marker);
         });
       });
     }
     $('#map-loader').fadeOut(300);
-  }));
+  });
+
+  // Listener for creating marker on click
+  google.maps.event.addListener(map, 'click', function(event) {
+    if (placedMarker !== undefined) placedMarker.setMap(null);
+    placedMarker = new google.maps.Marker({
+      position: event.latLng,
+      map: map
+    });
+    const infowindow = new google.maps.InfoWindow({
+      content: `<textarea id="dropped-pin-message" class="uk-textarea uk-width-1-1" rows="3" placeholder="Message"></textarea>
+                <div class="uk-margin-small">
+                    <button id="dropped-pin-submit" class="uk-button uk-button-primary uk-width-1-1">Drop Pin</button>
+                </div>`
+    });
+    map.panTo(event.latLng);
+    infowindow.open(map, placedMarker);
+    $('#dropped-pin-submit').click(function() {
+      $('#latitude').val(event.latLng.lat);
+      $('#longitude').val(event.latLng.lng);
+      $('#message').val($('#dropped-pin-message').val());
+      $('#submit').trigger('click');
+    });
+  });
 }
 
 function main() {
-
-  $('.input-error').hide();
 
   // Initialize form input nodes
   const $latitude = $('#latitude');
