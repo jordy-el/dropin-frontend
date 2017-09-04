@@ -4,13 +4,13 @@
 const pinsUrl = 'https://radiant-plains-19783.herokuapp.com/pins';
 
 // Initialize google map
-function initMap() {
+function initMap(customCenter = false) {
   const center = {
     lat: -25.344,
     lng: 131.036
   };
 
-  const map = new google.maps.Map(document.getElementById('map'), { zoom: 4, center: center });
+  const map = new google.maps.Map(document.getElementById('map'), { zoom: 4, center: customCenter || center });
 
   axios.get(pinsUrl).then((response => {
     if (response.data.length > 0) {
@@ -27,11 +27,13 @@ function initMap() {
         });
       });
     }
-    $('#map-loader').fadeOut(400);
+    $('#map-loader').fadeOut(300);
   }));
 }
 
 function main() {
+
+  $('.input-error').hide();
 
   // Initialize form input nodes
   const $latitude = $('#latitude');
@@ -42,8 +44,9 @@ function main() {
   // Add add/remove invalid class on inputs
   function validateForm(valid) {
     formInputs.forEach((n) => {
-      if (n.hasClass('uk-form-danger') && valid) { n.removeClass('uk-form-danger') }
-      if (!n.hasClass('uk-form-danger') && !valid) {
+      if (n.hasClass('uk-form-danger') && valid) {
+        n.removeClass('uk-form-danger');
+      } else if (!n.hasClass('uk-form-danger') && !valid) {
         n.addClass('uk-form-danger');
       }
     });
@@ -58,11 +61,13 @@ function main() {
     })
       .then(() => {
         validateForm(true);
-        initMap();
+      $('.input-error').hide(100);
+        initMap({ lat: Number($latitude[0].value), lng: Number($longitude[0].value) });
         formInputs.forEach((n) => { n.val('') });
     })
       .catch(() => {
         validateForm(false);
+        $('.input-error').show(200);
     })
   }
 

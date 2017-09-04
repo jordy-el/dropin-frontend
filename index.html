@@ -8,8 +8,8 @@
         <link rel="stylesheet" href="css/styles.css" />
     </head>
     <body>
-        <div id="container">
-            <div id="content" class="uk-grid-collapse uk-child-width-1-1@s uk-child-width-1-2@m uk-height-1-1" uk-grid uk-height-match>
+        <div id="container" class="uk-flex uk-flex-column">
+            <div id="content" class="uk-grid-collapse uk-child-width-1-2 uk-height-1-1 uk-flex-1" uk-grid uk-height-match>
                 <div id="controls" class="uk-flex uk-flex-column uk-height-1-1">
                     <div class="uk-section uk-section-secondary uk-light" style="padding-top: 1rem; padding-bottom: 1rem;">
                         <div class="uk-container">
@@ -22,23 +22,23 @@
                             <fieldset class="uk-fieldset">
 
                                 <div class="uk-margin">
-                                    <input id="latitude" class="uk-input" type="number" min="-90" max="90" placeholder="Latitude (Between -90 and 90)">
-                                    <p class="uk-text-danger"></p>
+                                    <input id="latitude" class="uk-input uk-width-1-1" type="number" min="-90" max="90" placeholder="Latitude (Between -90 and 90)">
+                                    <p class="uk-text-danger uk-text-center uk-width-1-1 input-error">Must be a number between -90 and 90</p>
                                 </div>
 
                                 <div class="uk-margin">
-                                    <input id="longitude" class="uk-input" type="number" min="-180" max="180" placeholder="Longitude (Between -180 and 180)">
-                                    <p class="uk-text-danger"></p>
+                                    <input id="longitude" class="uk-input uk-width-1-1" type="number" min="-180" max="180" placeholder="Longitude (Between -180 and 180)">
+                                    <p class="uk-text-danger uk-text-center uk-width-1-1 input-error">Must be a number between -180 and 180</p>
                                 </div>
 
                                 <div class="uk-margin">
-                                    <textarea id="message" class="uk-textarea" rows="3" placeholder="Write a message!"></textarea>
-                                    <p class="uk-text-danger"></p>
+                                    <textarea id="message" class="uk-textarea uk-width-1-1" rows="3" placeholder="Write a message!"></textarea>
+                                    <p class="uk-text-danger uk-text-center uk-width-1-1 input-error">Must contain a message</p>
                                 </div>
 
                                 <div class="uk-margin">
                                     <button id="submit" class="uk-button uk-button-primary uk-width-1-1">Drop Pin</button>
-                                    <p class="uk-text-danger"></p>
+                                    <p class="uk-text-danger uk-text-center uk-width-1-1"></p>
                                 </div>
 
                             </fieldset>
