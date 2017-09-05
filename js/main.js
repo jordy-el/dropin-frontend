@@ -48,13 +48,15 @@ function initMap(customCenter = false) {
                     <button id="dropped-pin-submit" class="uk-button uk-button-primary uk-width-1-1">Drop Pin</button>
                 </div>`
     });
-    map.panTo(event.latLng);
     infowindow.open(map, placedMarker);
     $('#dropped-pin-submit').click(function() {
       $('#latitude').val(event.latLng.lat);
       $('#longitude').val(event.latLng.lng);
       $('#message').val($('#dropped-pin-message').val());
       $('#submit').trigger('click');
+    });
+    google.maps.event.addListener(infowindow,'closeclick',function(){
+      placedMarker.setMap(null);
     });
   });
 }
